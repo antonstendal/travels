@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 public class HotelSearchPage {
 
     @FindBy(xpath = "//span[text()='Search by Hotel or City Name']")
@@ -35,6 +37,12 @@ public class HotelSearchPage {
     @FindBy(xpath = "//button[text()=' Search']")
     private WebElement searchButton;
 
+    @FindBy(css = "li[id='li_myaccount']")
+    private List<WebElement> myAccountLink;
+
+    @FindBy(xpath = "//a[contains(text(), ' Sign Up')]")
+    private List<WebElement> signUpLink;
+
     private WebDriver driver;
 
     public HotelSearchPage(WebDriver driver) {
@@ -42,19 +50,21 @@ public class HotelSearchPage {
         this.driver = driver;
     }
 
-    public void setCity(String cityName) {
+    public HotelSearchPage setCity(String cityName) {
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
         driver.findElement(By.xpath(xpath)).click();
+        return this;
     }
 
-    public void setDates(String checkIn, String checkOut) {
+    public HotelSearchPage setDates(String checkIn, String checkOut) {
         hotelCheckInInput.sendKeys(checkIn);
         hotelCheckOutInput.sendKeys(checkOut);
+        return this;
     }
 
-    public void setTravellers(int adultsToAdd, int childToAdd) {
+    public HotelSearchPage setTravellers(int adultsToAdd, int childToAdd) {
         travellersInput.click();
         addTraveller(adultPlusButton, adultsToAdd);
         addTraveller(childPlusButton, childToAdd);
@@ -63,6 +73,7 @@ public class HotelSearchPage {
                 adultMinusBtn.click();
             }
         }
+        return this;
     }
 
     public void addTraveller(WebElement travellerBtn, int numberOfTravers) {
@@ -72,7 +83,15 @@ public class HotelSearchPage {
 
     }
 
-    public void performSearch() {
+    public ResultsPage performSearch() {
         searchButton.click();
+        return new ResultsPage(driver);
     }
+
+    public SignUpPage openSignUpForm() {
+        myAccountLink.stream().filter(WebElement::isDisplayed).findFirst().ifPresent(WebElement::click);
+        signUpLink.get(1).click();
+        return new SignUpPage(driver);
+    }
+
 }

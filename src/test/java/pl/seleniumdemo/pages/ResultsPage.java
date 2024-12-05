@@ -17,7 +17,7 @@ public class ResultsPage {
     public WebElement resultHeading;
 
     public ResultsPage(WebDriver driver) {
-        PageFactory.initElements(driver,this);
+        PageFactory.initElements(driver, this);
     }
 
     public List<String> getHotelNames() {
