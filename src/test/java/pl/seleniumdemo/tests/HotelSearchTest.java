@@ -15,7 +15,7 @@ public class HotelSearchTest extends BaseTest {
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.setCity("Dubai");
-        hotelSearchPage.setDates("25/11/2024","27/11/2024");
+        hotelSearchPage.setDates("25/12/2024","27/12/2024");
         hotelSearchPage.setTravellers(2,2);
         hotelSearchPage.performSearch();
 
@@ -33,7 +33,7 @@ public class HotelSearchTest extends BaseTest {
     public void hotelSearchWithoutCityCountryTest() {
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
-        hotelSearchPage.setDates("25/11/2024", "30/11/2024");
+        hotelSearchPage.setDates("25/12/2024", "30/12/2024");
         hotelSearchPage.setTravellers(0,1);
         hotelSearchPage.performSearch();
 
