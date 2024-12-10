@@ -7,11 +7,11 @@ public class LoggerTest {
 
     public static void main(String[] args) {
         Logger logger = LogManager.getLogger();
-        logger.info("info");
-        logger.error("error");
-        logger.warn("warn");
-        logger.debug("debug");
-        logger.fatal("fatal");
-        logger.trace("trace");
+        logger.fatal("fatal"); //1
+        logger.error("error"); //2
+        logger.warn("warn"); //3
+        logger.info("info"); //4
+        logger.debug("debug"); //5
+        logger.trace("trace"); //6
     }
 }

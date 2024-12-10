@@ -34,7 +34,7 @@ public class HotelSearchTest extends BaseTest {
 
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.setDates("25/12/2024", "30/12/2024");
-        hotelSearchPage.setTravellers(0,1);
+        hotelSearchPage.setTravellers(1,1);
         hotelSearchPage.performSearch();
 
         ResultsPage resultsPage = new ResultsPage(driver);
