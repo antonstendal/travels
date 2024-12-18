@@ -1,26 +1,32 @@
 package pl.seleniumdemo.tests;
 
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pl.seleniumdemo.pages.HotelSearchPage;
 import pl.seleniumdemo.pages.LoggedUserPage;
 import pl.seleniumdemo.pages.SignUpPage;
+import pl.seleniumdemo.utils.SeleniumHelper;
 
+import java.io.IOException;
 import java.util.List;
 
 public class SignUpTest extends BaseTest {
 
     @Test
-    public void signUpTest() {
+    public void signUpTest() throws IOException {
         int randomNumber = (int) (Math.random() * 1000);
         String uniqueEmail = String.valueOf("test" + randomNumber + "@gmail.com");
 
+        ExtentTest extentTest = extentReports.createTest("Sign up test");
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
 
         SignUpPage signUpPage = new SignUpPage(driver);
         signUpPage.setFirstName("Anton");
+        extentTest.log(Status.PASS, "Setting name done", SeleniumHelper.getScreenshot(driver));
         signUpPage.setLastName("Sheiko");
         signUpPage.setTelNumber("1234567890");
         signUpPage.setEmail(uniqueEmail);
@@ -38,6 +44,8 @@ public class SignUpTest extends BaseTest {
 
     @Test
     public void signUpEmptyFieldsTest() {
+
+        extentReports.createTest("Sign Up Empty Fields Test");
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
         SignUpPage signUpPage = new SignUpPage(driver);
@@ -58,6 +66,7 @@ public class SignUpTest extends BaseTest {
 
     @Test
     public void signUpInvalidEmailTest() {
+        extentReports.createTest("Sign Up Invalid Email Test");
         HotelSearchPage hotelSearchPage = new HotelSearchPage(driver);
         hotelSearchPage.openSignUpForm();
         SignUpPage signUpPage = new SignUpPage(driver);

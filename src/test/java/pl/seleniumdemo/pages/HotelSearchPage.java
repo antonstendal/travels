@@ -1,7 +1,7 @@
 package pl.seleniumdemo.pages;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -48,7 +48,7 @@ public class HotelSearchPage {
 
     private WebDriver driver;
 
-    private static Logger logger = LogManager.getLogger();
+//    private static Logger logger = LogManager.getLogger();
 
     public HotelSearchPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -56,25 +56,25 @@ public class HotelSearchPage {
     }
 
     public void setCity(String cityName) {
-        logger.info("Setting city " + cityName);
+//        logger.info("Setting city " + cityName);
         searchHotelSpan.click();
         searchHotelInput.sendKeys(cityName);
         String xpath = String.format("//span[@class='select2-match' and text()='%s']", cityName);
         SeleniumHelper.waitForElementToExist(driver, By.xpath(xpath));
         driver.findElement(By.xpath(xpath)).click();
-        logger.info("Setting city done %n");
+//        logger.info("Setting city done %n");
 
     }
 
     public void setDates(String checkIn, String checkOut) {
-        logger.info("Setting dates check-in " + checkIn + " check-out " + checkOut);
+//        logger.info("Setting dates check-in " + checkIn + " check-out " + checkOut);
         hotelCheckInInput.sendKeys(checkIn);
         hotelCheckOutInput.sendKeys(checkOut);
-        logger.info("Setting dates done");
+//        logger.info("Setting dates done");
     }
 
     public void setTravellers(int adultsToAdd, int childToAdd) {
-        logger.info("Setting travellers adult: " + adultsToAdd + " and kids: " + childToAdd);
+//        logger.info("Setting travellers adult: " + adultsToAdd + " and kids: " + childToAdd);
         travellersInput.click();
         addTraveller(adultPlusButton, adultsToAdd);
         addTraveller(childPlusButton, childToAdd);
@@ -83,7 +83,7 @@ public class HotelSearchPage {
                 adultMinusBtn.click();
             }
         }
-        logger.info("Adding travelers done");
+//        logger.info("Adding travelers done");
     }
 
     public void addTraveller(WebElement travellerBtn, int numberOfTravers) {
@@ -93,9 +93,9 @@ public class HotelSearchPage {
     }
 
     public void performSearch() {
-        logger.info("Performing search");
+//        logger.info("Performing search");
         searchButton.click();
-        logger.info("Performing search done");
+//        logger.info("Performing search done");
     }
 
     public void openSignUpForm() {
